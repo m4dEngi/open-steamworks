@@ -7,6 +7,10 @@ ifeq ($(UNAME_M), x86_64)
 	BUILD_ARCH := 64
 endif
 
+ifeq ($(UNAME_M), arm64)
+	BUILD_ARCH := 64
+endif
+
 FLAGS = -m$(BUILD_ARCH) -fPIC -O2 -c -I../../OpenSteamworks
 
 LIBNAME = ../lib/Linux$(BUILD_ARCH)/OpenSteamAPI.a
