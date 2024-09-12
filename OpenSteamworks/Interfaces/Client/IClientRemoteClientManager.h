@@ -52,6 +52,7 @@ public:
 	virtual bool BRemoteClientStreaming(uint64) = 0;
 	virtual unknown_ret GetRemoteClientStreamingSession(uint64) = 0;
 	virtual unknown_ret GetRemoteClientFormFactor(uint64) = 0;
+	virtual bool BRemoteClientCanSteamVR(uint64) = 0;
 	virtual unknown_ret GetRemoteClientConnectState(uint64) = 0;
 	virtual bool BRemoteClientHasStreamingSupported(uint64) = 0;
 	virtual bool BRemoteClientHasStreamingEnabled(uint64) = 0;
@@ -125,6 +126,7 @@ public:
 	virtual unknown_ret DisbandRemotePlayTogetherGroup() = 0;
 	virtual unknown_ret OnRemotePlayUIMovedController() = 0;
 	virtual unknown_ret OnSendRemotePlayTogetherInvite(CSteamID, uint32) = 0;
+	virtual void ShowRemotePlayTogetherUI(AppId_t) = 0;
 	virtual unknown_ret GetCloudGameTimeRemaining(CGameID, uint64) = 0;
 	virtual unknown_ret ShutdownStreamClients(bool) = 0;
 };
