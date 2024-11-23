@@ -87,7 +87,8 @@ void CSteamAPILoader::TryGetSteamDir()
 
 	if (GetApplicationSupportPath(m_szSteamPath, sizeof(m_szSteamPath)))
 	{
-		strncat(m_szSteamPath, "/Steam/Steam.AppBundle/Steam/Contents/MacOS/", sizeof(m_szSteamPath));
+		strncat(m_szSteamPath, "/Steam/Steam.AppBundle/Steam/Contents/MacOS/",
+			sizeof(m_szSteamPath) - strlen(m_szSteamPath) - 1);
 		bFallback = false;
 	}
 
@@ -100,13 +101,14 @@ void CSteamAPILoader::TryGetSteamDir()
 
 	char* szHome = getpwuid(getuid())->pw_dir;
 
-	strncat(m_szSteamPath, szHome, sizeof(m_szSteamPath));
+	strncat(m_szSteamPath, szHome, sizeof(m_szSteamPath) - strlen(m_szSteamPath) - 1);
 
 #ifdef __LP64__
-	strncat(m_szSteamPath, "/.steam/sdk64/", sizeof(m_szSteamPath));
+	const char* szSDKPath = "/.steam/sdk64/";
 #else
-	strncat(m_szSteamPath, "/.steam/sdk32/", sizeof(m_szSteamPath));
+	const char* szSDKPath = "/.steam/sdk32/";
 #endif
+	strncat(m_szSteamPath, szSDKPath, sizeof(m_szSteamPath) - strlen(m_szSteamPath) - 1);
 
 	struct stat info;
 	if (stat(m_szSteamPath, &info) == 0)
