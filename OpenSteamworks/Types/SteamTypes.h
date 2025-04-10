@@ -720,7 +720,7 @@ enum ECallbackType
 	k_iClientDeviceAuthCallbacks = 3000,
 	k_iClientNetworkDeviceManagerCallbacks = 3100,
 	k_iClientMusicCallbacks = 3200,
-	k_iClientRemoteClientManagerCallbacks = 1110000,
+    k_iClientRemoteClientManagerCallbacks = 1100000,
 	k_iClientUGCCallbacks = 3400,
 	k_iSteamStreamClientCallbacks = 3500,
 	k_IClientProductBuilderCallbacks = 3600,
