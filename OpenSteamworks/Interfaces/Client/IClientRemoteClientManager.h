@@ -58,8 +58,11 @@ public:
     virtual bool BRemoteClientHasLocalConnection(uint64) = 0;
     virtual bool BRemoteClientHasStreamingSupported(uint64) = 0;
     virtual bool BRemoteClientHasStreamingEnabled(uint64) = 0;
-    virtual unknown_ret GetRemoteClientAppAvailability(uint64, uint32) = 0;
     virtual unknown_ret GetRemoteClientAppState(uint64, uint32) = 0;
+    virtual bool BRemoteClientIsSteamDeck(uint64) = 0;
+    virtual bool BRemoteClientConnectedToWifiAP(uint64) = 0;
+    virtual unknown_ret GetConnectedWifiAPClientID() = 0;
+    virtual unknown_ret GetActiveVRStreamingInvitationClientID() = 0;
     virtual unknown_ret GetRemoteDeviceCount() = 0;
     virtual unknown_ret GetRemoteDeviceIDByIndex(uint32) = 0;
     virtual unknown_ret GetRemoteDeviceNameByIndex(uint32) = 0;
@@ -109,6 +112,8 @@ public:
     virtual unknown_ret SetRemotePlayTogetherBitrateOverride(int32) = 0;
     virtual bool BHasRemotePlayInviteAndSession(RemotePlayPlayer_t) = 0;
     virtual bool BCreateRemotePlayGroup(void* unk) = 0;
+    virtual unknown_ret GetLocalRemotePlayTogetherGroupID(int32) = 0;
+    virtual unknown_ret GetRemotePlayTogetherGroupIDForOverlayPID(int32) = 0;
     virtual bool BCreateRemotePlayInviteAndSession(RemotePlayPlayer_t friendID, AppId_t appID) = 0;
     virtual unknown_ret CancelRemotePlayInviteAndSession(RemotePlayPlayer_t) = 0;
     virtual unknown_ret JoinRemotePlaySession(CSteamID, const char*) = 0;
@@ -133,6 +138,7 @@ public:
     virtual unknown_ret GetCloudGameTimeRemaining(CGameID, uint64) = 0;
     virtual unknown_ret ShutdownStreamClients(bool) = 0;
     virtual unknown_ret MarkTaskComplete(int64, int32) = 0;
+    virtual void Shutdown() = 0;
 };
 
 #endif // ICLIENTREMOTECLIENTMANAGER_H
