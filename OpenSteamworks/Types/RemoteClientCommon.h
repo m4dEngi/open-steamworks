@@ -78,10 +78,11 @@ enum EClientUsedInputType
 struct RemotePlayPlayer_t
 {
     CSteamID m_playerID;
-    uint64 m_guestID;
-    uint64 m_ullUnk1;
-    uint64 m_ullUnk2;
-    uint32 m_uUnk1;
+    uint32   m_unGuestID;
+    uint32   m_unOverlayPIDGroupID;
+    uint64   m_ullUnk2;
+    uint64   m_ullUnk3;
+    uint32   m_uUnk1;
 };
 
 #pragma pack( pop )
