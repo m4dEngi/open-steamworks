@@ -969,7 +969,7 @@ struct AppStartedProcess_t
     enum { k_iCallback = k_iClientUserCallbacks + 78 };
 
     uint32 m_unAppPID;
-    uint32 m_unAppID;
+    AppId_t m_unAppID;
     uint32 m_unUnk;
 };
 
