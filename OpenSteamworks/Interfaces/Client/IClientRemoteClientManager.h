@@ -2,7 +2,7 @@
 //
 // This file is part of the Open Steamworks project. All individuals associated
 // with this project do not claim ownership of the contents
-// 
+//
 // The code, comments, and all related files, projects, resources,
 // redistributables included with this project are Copyright Valve Corporation.
 // Additionally, Valve, the Valve logo, Half-Life, the Half-Life logo, the
@@ -63,6 +63,12 @@ public:
     virtual bool BRemoteClientConnectedToWifiAP(uint64) = 0;
     virtual unknown_ret GetConnectedWifiAPClientID() = 0;
     virtual unknown_ret GetActiveVRStreamingInvitationClientID() = 0;
+    virtual unknown_ret GetWifiAPStateJSONString() = 0;
+    virtual bool BCanPairViaWifiAP() = 0;
+    virtual bool BRemoteClientCanPairViaWifiAP(uint64) = 0;
+    virtual bool BRemoteClientWifiAPUnpaired(uint64) = 0;
+    virtual unknown_ret PairViaWifiAP(uint64) = 0;
+    virtual unknown_ret UnpairLocalWifiAP() = 0;
     virtual unknown_ret GetRemoteDeviceCount() = 0;
     virtual unknown_ret GetRemoteDeviceIDByIndex(uint32) = 0;
     virtual unknown_ret GetRemoteDeviceNameByIndex(uint32) = 0;
@@ -116,6 +122,7 @@ public:
     virtual bool BCreateRemotePlayGroup(void* unk) = 0;
     virtual unknown_ret GetLocalRemotePlayTogetherGroupID(int32) = 0;
     virtual unknown_ret GetRemotePlayTogetherGroupIDForOverlayPID(int32) = 0;
+    virtual unknown_ret GetAvailableRemotePlayTogetherGuestID() = 0;
     virtual bool BCreateRemotePlayInviteAndSession(RemotePlayPlayer_t friendID, AppId_t appID) = 0;
     virtual unknown_ret CancelRemotePlayInviteAndSession(RemotePlayPlayer_t) = 0;
     virtual unknown_ret JoinRemotePlaySession(CSteamID, const char*) = 0;
@@ -126,11 +133,11 @@ public:
     virtual unknown_ret SetPerUserMouseInputEnabled(RemotePlayPlayer_t, bool) = 0;
     virtual unknown_ret SetPerUserControllerInputEnabled(RemotePlayPlayer_t, bool) = 0;
     virtual unknown_ret GetPerUserInputSettings(RemotePlayPlayer_t, RemoteClientInputSettings_t*) = 0;
-    virtual unknown_ret GetClientInputSettings(RemotePlayPlayer_t, RemoteClientInputSettings_t*) = 0;
     virtual unknown_ret OnClientUsedInput(RemotePlayPlayer_t, EClientUsedInputType) = 0;
     virtual unknown_ret OnPlaceholderStateChanged(bool) = 0;
     virtual unknown_ret OnRemoteClientRemotePlayClearControllers() = 0;
     virtual unknown_ret OnRemoteClientRemotePlayControllerIndexSet(RemotePlayPlayer_t, uint32) = 0;
+    virtual unknown_ret UpdateRemotePlayTogetherGroups() = 0;
     virtual unknown_ret UpdateRemotePlayTogetherGroup() = 0;
     virtual unknown_ret DisbandRemotePlayTogetherGroup() = 0;
     virtual unknown_ret OnRemotePlayUIMovedController() = 0;
@@ -138,8 +145,9 @@ public:
     virtual void ShowRemotePlayTogetherUI(AppId_t) = 0;
     virtual unknown_ret BGetRemotePlayTogetherMouseCursor(int32, int32, int32, int32, int32, int32) = 0;
     virtual unknown_ret GetCloudGameTimeRemaining(CGameID, uint64) = 0;
-    virtual unknown_ret ShutdownStreamClients(bool) = 0;
+    virtual unknown_ret StopRemoteClientStream(uint64) = 0;
     virtual unknown_ret MarkTaskComplete(int64, int32) = 0;
+    virtual unknown_ret NotifySettingsChanged() = 0;
     virtual void Shutdown() = 0;
 };
 
