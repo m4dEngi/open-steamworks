@@ -23,22 +23,20 @@
 #include "Types/SteamTypes.h"
 #include "Types/BillingCommon.h"
 
-
 enum EPackageStatus
 {
 };
 
-
 abstract_class UNSAFE_INTERFACE IClientBilling
 {
 public:
-	virtual bool PurchaseWithActivationCode( const char *pchActivationCode ) = 0;
-	virtual bool HasActiveLicense( uint32 ) = 0;
-	virtual bool GetLicenseInfo( uint32 nLicenseIndex, RTime32* pRTime32Created, RTime32* pRTime32NextProcess, int32* pnMinuteLimit, int32 * pnMinutesUsed, EPaymentMethod* pePaymentMethod, uint32* punFlags, int32 * pnTerritoryCode, char * prgchPurchaseCountryCode /* Use a 3 bytes buffer */) = 0;
-	virtual void EnableTestLicense( PackageId_t unPackageID ) = 0;
-	virtual void DisableTestLicense( PackageId_t unPackageID ) = 0;
-	virtual uint32 GetAppsInPackage( PackageId_t unPackageID, AppId_t puIds[], uint32 uMaxIds ) = 0;
-	virtual SteamAPICall_t RequestFreeLicenseForApps(AppId_t puIds[], uint32 smth) = 0;
+    virtual bool PurchaseWithActivationCode( const char *pchActivationCode ) = 0;
+    virtual bool HasActiveLicense( uint32 ) = 0;
+    virtual bool GetLicenseInfo( uint32 nLicenseIndex, RTime32* pRTime32Created, RTime32* pRTime32NextProcess, int32* pnMinuteLimit, int32 * pnMinutesUsed, EPaymentMethod* pePaymentMethod, uint32* punFlags, int32 * pnTerritoryCode, char * prgchPurchaseCountryCode /* Use a 3 bytes buffer */) = 0;
+    virtual void EnableTestLicense( PackageId_t unPackageID ) = 0;
+    virtual void DisableTestLicense( PackageId_t unPackageID ) = 0;
+    virtual uint32 GetAppsInPackage( PackageId_t unPackageID, AppId_t puIds[], uint32 uMaxIds ) = 0;
+    virtual SteamAPICall_t RequestFreeLicenseForApps(AppId_t puIds[], uint32 smth) = 0;
 };
 
 #endif // ICLIENTBILLING_H

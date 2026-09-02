@@ -23,26 +23,28 @@
 #include "Types/SteamTypes.h"
 #include "Types/AppsCommon.h"
 
-
 abstract_class UNSAFE_INTERFACE IClientApps
 {
 public:
-	// returns 0 if the key does not exist
-	// this may be true on first call, since the app data may not be cached locally yet
-	// If you expect it to exists wait for the AppDataChanged_t after the first failure and ask again
-	virtual int32 GetAppData( AppId_t unAppID, const char *pchKey, char *pchValue, int32 cchValueMax ) = 0;
-
-	virtual bool SetLocalAppConfig( AppId_t unAppID, uint8 *pchBuffer, int32 cbBuffer ) = 0;
-	virtual AppId_t GetInternalAppIDFromGameID( CGameID nGameID ) = 0;
-	virtual int32 GetAllOwnedMultiplayerApps( AppId_t *punAppIDs, int32 cAppIDsMax ) = 0;
-	virtual unknown_ret GetAvailableLaunchOptions( AppId_t unAppID, uint32*, uint32) = 0;
-	virtual int32 GetAppDataSection( AppId_t unAppID, EAppInfoSection eSection, uint8 *pchBuffer, int32 cbBufferMax, bool bSharedKVSymbols ) = 0;
-	virtual unknown_ret GetMultipleAppDataSections( AppId_t unAppID, const int32*, int32, uint8*, int32, bool, int32*) = 0;
-	virtual bool RequestAppInfoUpdate( const AppId_t *pAppIDs, int32 nNumAppIDs ) = 0;
-	virtual int32 GetDLCCount( AppId_t unAppID ) = 0;
-	virtual bool BGetDLCDataByIndex( AppId_t unAppID, int32 iDLC, AppId_t* pDlcAppID, bool *pbAvailable, char *pchName, int32 cchNameBufferSize ) = 0;
-	virtual int32 GetAppType( AppId_t unAppID ) = 0;
-	virtual unknown_ret GetStoreTagLocalization(ELanguage eUnk, uint32* uUnk, int32 iUnk1, uint8* pchBuf, int32 iUnk2) = 0;
+    // returns 0 if the key does not exist
+    // this may be true on first call, since the app data may not be cached locally yet
+    // If you expect it to exists wait for the AppDataChanged_t after the first failure and ask again
+    virtual int32 GetAppData( AppId_t unAppID, const char *pchKey, char *pchValue, int32 cchValueMax ) = 0;
+    virtual bool SetLocalAppConfig( AppId_t unAppID, uint8 *pchBuffer, int32 cbBuffer ) = 0;
+    virtual AppId_t GetInternalAppIDFromGameID( CGameID nGameID ) = 0;
+    virtual int32 GetAllOwnedMultiplayerApps( AppId_t *punAppIDs, int32 cAppIDsMax ) = 0;
+    virtual unknown_ret GetAvailableLaunchOptions( AppId_t unAppID, uint32*, uint32) = 0;
+    virtual int32 GetAppDataSection( AppId_t unAppID, EAppInfoSection eSection, uint8 *pchBuffer, int32 cbBufferMax, bool bSharedKVSymbols ) = 0;
+    virtual unknown_ret GetMultipleAppDataSections( AppId_t unAppID, const int32*, int32, uint8*, int32, bool, int32*) = 0;
+    virtual bool RequestAppInfoUpdate( const AppId_t *pAppIDs, int32 nNumAppIDs ) = 0;
+    virtual int32 GetDLCCount( AppId_t unAppID ) = 0;
+    virtual bool BGetDLCDataByIndex( AppId_t unAppID, int32 iDLC, AppId_t* pDlcAppID, bool *pbAvailable, char *pchName, int32 cchNameBufferSize ) = 0;
+    virtual int32 GetAppType( AppId_t unAppID ) = 0;
+    virtual unknown_ret TakeUpdateLock() = 0; //TODO: REVERSE ME
+    virtual unknown_ret GetAllAppsKVRaw() = 0; //TODO: REVERSE ME
+    virtual unknown_ret ReleaseUpdateLock() = 0; //TODO: REVERSE ME
+    virtual unknown_ret PrintAppInfo() = 0; //TODO: REVERSE ME
+    virtual unknown_ret GetLastChangeNumberReceived() = 0; //TODO: REVERSE ME
 };
 
 #endif // ICLIENTAPPS_H

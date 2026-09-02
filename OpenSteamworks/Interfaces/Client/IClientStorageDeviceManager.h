@@ -22,7 +22,7 @@
 
 #include "Types/SteamTypes.h"
 
-class IClientStorageDeviceManager
+abstract_class UNSAFE_INTERFACE IClientStorageDeviceManager
 {
 public:
 	virtual unknown_ret IsInterfaceValid() = 0;

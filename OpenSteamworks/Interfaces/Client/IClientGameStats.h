@@ -26,25 +26,19 @@
 abstract_class UNSAFE_INTERFACE IClientGameStats
 {
 public:
-	virtual SteamAPICall_t GetNewSession( int8 nAccountType, uint64 ullAccountID, AppId_t nAppID, RTime32 rtTimeStarted ) = 0;
-	virtual SteamAPICall_t EndSession( uint64 ulSessionID, RTime32 rtTimeEnded, int16 nReasonCode ) = 0;
-
-	virtual EResult AddSessionAttributeInt( uint64 ulSessionID, const char *pstrName, int32 nData ) = 0;
-	virtual EResult AddSessionAttributeString( uint64 ulSessionID, const char *pstrName, const char *pstrData ) = 0;
-	virtual EResult AddSessionAttributeFloat( uint64 ulSessionID, const char *pstrName, float fData ) = 0;
-
-	virtual EResult AddNewRow( uint64 *pulRowID, uint64 ulSessionID, const char *pstrTableName ) = 0;
-
-	virtual EResult CommitRow( uint64 ulRowID ) = 0;
-	virtual EResult CommitOutstandingRows( uint64 ulSessionID ) = 0;
-
-	virtual EResult AddRowAttributeInt( uint64 ulRowID, const char *pstrName, int32 iData ) = 0;
-	virtual EResult AddRowAttributeString( uint64 ulRowID, const char *pstrName, const char *pstrData ) = 0;
-	virtual EResult AddRowAttributeFloat( uint64 ulRowID, const char *pstrName, float fData ) = 0;
-
-	virtual EResult AddSessionAttributeInt64( uint64 ulSessionID, const char *pstrName, int64 llData ) = 0;
-	virtual EResult AddRowAttributeInt64( uint64 ulRowID, const char *pstrName, int64 llData ) = 0;
+    virtual SteamAPICall_t GetNewSession( int8 nAccountType, uint64 ullAccountID, AppId_t nAppID, RTime32 rtTimeStarted ) = 0;
+    virtual SteamAPICall_t EndSession( uint64 ulSessionID, RTime32 rtTimeEnded, int16 nReasonCode ) = 0;
+    virtual EResult AddSessionAttributeInt( uint64 ulSessionID, const char *pstrName, int32 nData ) = 0;
+    virtual EResult AddSessionAttributeString( uint64 ulSessionID, const char *pstrName, const char *pstrData ) = 0;
+    virtual EResult AddSessionAttributeFloat( uint64 ulSessionID, const char *pstrName, float fData ) = 0;
+    virtual EResult AddNewRow( uint64 *pulRowID, uint64 ulSessionID, const char *pstrTableName ) = 0;
+    virtual EResult CommitRow( uint64 ulRowID ) = 0;
+    virtual EResult CommitOutstandingRows( uint64 ulSessionID ) = 0;
+    virtual EResult AddRowAttributeInt( uint64 ulRowID, const char *pstrName, int32 iData ) = 0;
+    virtual EResult AddRowAttributeString( uint64 ulRowID, const char *pstrName, const char *pstrData ) = 0;
+    virtual EResult AddRowAttributeFloat( uint64 ulRowID, const char *pstrName, float fData ) = 0;
+    virtual EResult AddSessionAttributeInt64( uint64 ulSessionID, const char *pstrName, int64 llData ) = 0;
+    virtual EResult AddRowAttributeInt64( uint64 ulRowID, const char *pstrName, int64 llData ) = 0;
 };
-
 
 #endif // ICLIENTGAMESTATS_H

@@ -23,17 +23,19 @@
 class IClientNetworkingSocketsSerialized
 {
 public:
-	virtual unknown_ret SendP2PRendezvous( CSteamID, uint32, const void*, uint32 ) = 0;
-	virtual unknown_ret SendP2PConnectionFailure( CSteamID, uint32, uint32, const char* ) = 0;
-	virtual unknown_ret GetCertAsync() = 0;
-	virtual unknown_ret GetNetworkConfigJSON( void*, uint32 ) = 0;
-	virtual unknown_ret CacheRelayTicket( const void*, uint32 ) = 0;
-	virtual unknown_ret GetCachedRelayTicketCount() = 0;
-	virtual unknown_ret GetCachedRelayTicket( uint32, void*, uint32 ) = 0;
-	virtual unknown_ret PostConnectionStateMsg( const void*, uint32 ) = 0;
-	virtual unknown_ret TEST_ClearInMemoryCachedCredentials() = 0;
-	virtual unknown_ret TEST_GetNetworkConfigLocalFilename() = 0;
-	virtual unknown_ret TEST_ClearCachedNetworkConfig() = 0;
+    virtual unknown_ret SendP2PRendezvous( CSteamID, uint32, const void*, uint32 ) = 0;
+    virtual unknown_ret SendP2PConnectionFailureLegacy() = 0; //TODO: REVERSE ME
+    virtual unknown_ret GetCertAsync() = 0;
+    virtual unknown_ret CacheRelayTicket( const void*, uint32 ) = 0;
+    virtual unknown_ret GetCachedRelayTicketCount() = 0;
+    virtual unknown_ret GetCachedRelayTicket( uint32, void*, uint32 ) = 0;
+    virtual unknown_ret GetSTUNServer() = 0; //TODO: REVERSE ME
+    virtual unknown_ret AllowDirectConnectToPeerString() = 0; //TODO: REVERSE ME
+    virtual unknown_ret BeginAsyncRequestFakeIP() = 0; //TODO: REVERSE ME
+    virtual unknown_ret AllowDirectConnectToPeerString_2() = 0; // TODO: REVERSE ME
+    virtual unknown_ret SetAllowShareIPUserSetting() = 0; //TODO: REVERSE ME
+    virtual unknown_ret GetAllowShareIPUserSetting() = 0; //TODO: REVERSE ME
+    virtual unknown_ret TEST_ClearInMemoryCachedCredentials() = 0;
 };
 
 #endif // ICLIENTNETWORKINGSOCKETSSERIALIZED_H

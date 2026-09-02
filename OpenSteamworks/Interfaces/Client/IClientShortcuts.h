@@ -28,78 +28,51 @@
 
 struct ShortcutChanged_t
 {
-	enum { k_iCallback = k_iClientShortcutsCallbacks + 1 };
+    enum { k_iCallback = k_iClientShortcutsCallbacks + 1 };
 
-	AppId_t m_nAppID;
-	bool m_bRemote;
+    AppId_t m_nAppID;
+    bool m_bRemote;
 };
 
 struct ShortcutRemoved_t
 {
-	enum { k_iCallback = k_iClientShortcutsCallbacks + 2 };
+    enum { k_iCallback = k_iClientShortcutsCallbacks + 2 };
 
-	AppId_t m_nAppID;
-	bool m_bRemote;
+    AppId_t m_nAppID;
+    bool m_bRemote;
 };
 
 #pragma pack( pop )
 
-
 abstract_class UNSAFE_INTERFACE IClientShortcuts
 {
 public:
-	virtual uint32 GetUniqueLocalAppId() = 0;
-	virtual CGameID GetGameIDForAppID( AppId_t unAppID ) = 0;
-	virtual AppId_t GetAppIDForGameID( CGameID gameID ) = 0;
-	virtual uint32 GetShortcutCount() = 0;
-	virtual AppId_t GetShortcutAppIDByIndex( uint32 uIndex ) = 0;
-	virtual const char * GetShortcutAppNameByIndex( uint32 uIndex ) = 0;
-	virtual const char * GetShortcutExeByIndex( uint32 uIndex ) = 0;
-	virtual uint32 GetShortcutUserTagCountByIndex( uint32 uIndex ) = 0;
-	virtual const char * GetShortcutUserTagByIndex( uint32 uIndex, uint32 ) = 0;
-	virtual bool BIsShortcutRemoteByIndex( uint32 uIndex ) = 0;
-	virtual bool BIsTemporaryShortcutByIndex( uint32 uIndex ) = 0;
-	virtual bool BIsOpenVRShortcutByIndex( uint32 uIndex ) = 0;
-	virtual bool BIsDevkitShortcutByIndex( uint32 uIndex ) = 0;
-	virtual unknown_ret GetDevkitGameIDByIndex( uint32 uIndex ) = 0;
-	virtual unknown_ret GetDevkitAppIDByDevkitGameID( const char * pchUnk) = 0;
-	virtual AppId_t GetOverrideAppID( uint32 uUnk ) = 0;
-	virtual const char * GetShortcutAppNameByAppID( AppId_t unAppID ) = 0;
-	virtual const char * GetShortcutExeByAppID( AppId_t unAppID ) = 0;
-	virtual const char * GetShortcutStartDirByAppID( AppId_t unAppID ) = 0;
-	virtual const char * GetShortcutIconByAppID( AppId_t unAppID ) = 0;
-	virtual const char * GetShortcutPathByAppID( AppId_t unAppID ) = 0;
-	virtual const char * GetShortcutCommandLine( AppId_t unAppID ) = 0;
-	virtual uint32 GetShortcutUserTagCountByAppID( AppId_t unAppID ) = 0;
-	virtual const char * GetShortcutUserTagByAppID( AppId_t unAppID, uint32 ) = 0;
-	virtual bool BIsShortcutRemoteByAppID( AppId_t unAppID ) = 0;
-	virtual bool BIsShortcutHiddenByAppID( AppId_t unAppID ) = 0;
-	virtual bool BIsTemporaryShortcutByAppID( AppId_t unAppID ) = 0;
-	virtual bool BIsOpenVRShortcutByAppID( AppId_t unAppID ) = 0;
-	virtual bool BAllowDesktopConfigByAppID( AppId_t unAppID ) = 0;
-	virtual bool BAllowOverlayByAppID( AppId_t unAppID ) = 0;
-	virtual uint32 GetShortcutLastPlayedTime( AppId_t unAppID ) = 0;
-	virtual AppId_t AddShortcut( const char *szShortcutName, const char *szShortcutExe, const char *szUnk1, const char *szUnk2, const char *szhUnk3) = 0;
-	virtual uint32 AddTemporaryShortcut( const char *, const char *, const char * ) = 0;
-	virtual uint32 AddOpenVRShortcut( const char *, const char *, const char * ) = 0;
-	virtual void SetShortcutFromFullpath( AppId_t unAppID, const char * szPath ) = 0;
-	virtual void SetShortcutAppName( AppId_t unAppID, const char * szAppName ) = 0;
-	virtual void SetShortcutExe( AppId_t unAppID, const char * szExePath ) = 0;
-	virtual void SetShortcutStartDir( AppId_t unAppID, const char * szPath ) = 0;
-	virtual void SetShortcutIcon( AppId_t unAppID, const char * szIconPath ) = 0;
-	virtual void SetShortcutCommandLine( AppId_t unAppID, const char * szCommandLine ) = 0;
-	virtual void ClearShortcutUserTags( AppId_t unAppID ) = 0;
-	virtual void AddShortcutUserTag( AppId_t unAppID, const char * szTag) = 0;
-	virtual void RemoveShortcutUserTag( AppId_t unAppID, const char * szTag) = 0;
-	virtual void ClearAndSetShortcutUserTags( AppId_t unAppID, const SteamParamStringArray_t *) = 0;
-	virtual void SetShortcutHidden( AppId_t unAppID, bool ) = 0;
-	virtual void SetAllowDesktopConfig( uint32, bool ) = 0;
-	virtual void SetAllowOverlay( AppId_t unAppID, bool ) = 0;
-	virtual void SetOpenVRShortcut( uint32, bool ) = 0;
-	virtual void SetDevkitShortcut( uint32 uUnk, const char * pchUnk ) = 0;
-	virtual void RemoveShortcut( AppId_t unAppID ) = 0;
-	virtual void RemoveAllTemporaryShortcuts() = 0;
-	virtual bool LaunchShortcut( AppId_t unAppID, uint32 uUnk ) = 0;
+    virtual uint32 GetUniqueLocalAppId() = 0;
+    virtual CGameID GetGameIDForAppID( AppId_t unAppID ) = 0;
+    virtual unknown_ret GetDevkitAppIDByDevkitGameID( const char * pchUnk) = 0;
+    virtual unknown_ret GetShortcutAppIds() = 0; //TODO: REVERSE ME
+    virtual unknown_ret GetShortcutInfos() = 0; //TODO: REVERSE ME
+    virtual unknown_ret GetShortcutInfoByAppID() = 0; //TODO: REVERSE ME
+    virtual AppId_t AddShortcut( const char *szShortcutName, const char *szShortcutExe, const char *szUnk1, const char *szUnk2, const char *szhUnk3) = 0;
+    virtual uint32 AddTemporaryShortcut( const char *, const char *, const char * ) = 0;
+    virtual uint32 AddOpenVRShortcut( const char *, const char *, const char * ) = 0;
+    virtual void SetShortcutFromFullpath( AppId_t unAppID, const char * szPath ) = 0;
+    virtual void SetShortcutAppName( AppId_t unAppID, const char * szAppName ) = 0;
+    virtual void SetShortcutExe( AppId_t unAppID, const char * szExePath ) = 0;
+    virtual void SetShortcutStartDir( AppId_t unAppID, const char * szPath ) = 0;
+    virtual void SetShortcutIcon( AppId_t unAppID, const char * szIconPath ) = 0;
+    virtual void SetShortcutCommandLine( AppId_t unAppID, const char * szCommandLine ) = 0;
+    virtual void SetShortcutHidden( AppId_t unAppID, bool ) = 0;
+    virtual void SetAllowDesktopConfig( uint32, bool ) = 0;
+    virtual void SetAllowOverlay( AppId_t unAppID, bool ) = 0;
+    virtual void SetOpenVRShortcut( uint32, bool ) = 0;
+    virtual unknown_ret SetShortcutSortAs() = 0; //TODO: REVERSE ME
+    virtual void SetDevkitShortcut( uint32 uUnk, const char * pchUnk ) = 0;
+    virtual unknown_ret SetFlatpakAppID() = 0; //TODO: REVERSE ME
+    virtual void RemoveShortcut( AppId_t unAppID ) = 0;
+    virtual void RemoveAllTemporaryShortcuts() = 0;
+    virtual bool LaunchShortcut( AppId_t unAppID, uint32 uUnk ) = 0;
+    virtual unknown_ret GetAppIDByExeName() = 0; //TODO: REVERSE ME
 };
 
 #endif // ICLIENTSHORTCUTS_H

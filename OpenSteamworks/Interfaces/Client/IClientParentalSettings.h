@@ -26,16 +26,15 @@
 abstract_class UNSAFE_INTERFACE IClientParentalSettings
 {
 public:
-	virtual bool BIsParentalLockEnabled() = 0;
-	virtual bool BIsParentalLockLocked() = 0;
-	virtual bool BIsAppBlocked(AppId_t unAppID) = 0;
-	virtual bool BIsAppInBlockList(AppId_t unAppID) = 0;
-	virtual bool BIsFeatureBlocked(EParentalFeature eParentalFeature) = 0;
-	virtual bool BIsFeatureInBlockList(EParentalFeature eParentalFeature) = 0;
-	virtual bool BGetSerializedParentalSettings(CUtlBuffer*) = 0;
-	virtual bool BGetRecoveryEmail(char* pchEmailAddr, int32 cbEmailAddr) = 0;
-	virtual bool BIsLockFromSiteLicense() = 0;
+    virtual bool BIsParentalLockEnabled() = 0;
+    virtual bool BIsParentalLockLocked() = 0;
+    virtual bool BIsAppBlocked(AppId_t unAppID) = 0;
+    virtual bool BIsAppInBlockList(AppId_t unAppID) = 0;
+    virtual bool BIsFeatureBlocked(EParentalFeature eParentalFeature) = 0;
+    virtual bool BIsFeatureInBlockList(EParentalFeature eParentalFeature) = 0;
+    virtual bool BGetSerializedParentalSettings(CUtlBuffer*) = 0;
+    virtual bool BGetRecoveryEmail(char* pchEmailAddr, int32 cbEmailAddr) = 0;
+    virtual bool BIsLockFromSiteLicense() = 0;
 };
 
 #endif // ICLIENTPARENTALSETTINGS_H
- 

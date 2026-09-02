@@ -26,8 +26,8 @@
 abstract_class UNSAFE_INTERFACE IClientStreamLauncher
 {
 public:
-	virtual EStreamLauncherResult StartStreaming( const char *cszFilePath ) = 0;
-	virtual void StopStreaming() = 0;
+    virtual EStreamLauncherResult StartStreaming( const char *cszFilePath ) = 0;
+    virtual void StopStreaming() = 0;
 };
 
 #endif // ICLIENTSTREAMLAUNCHER_H

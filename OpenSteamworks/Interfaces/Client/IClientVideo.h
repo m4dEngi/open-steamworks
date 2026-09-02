@@ -28,70 +28,53 @@ class CUtlString;
 abstract_class UNSAFE_INTERFACE IClientVideo
 {
 public:
-	virtual bool BGetUserVideoFolder(char*, int32) = 0;
-	virtual void UnlockH264() = 0;
-	virtual int32 EGetBroadcastReady() = 0;
-
-	virtual void BeginBroadcastSession() = 0;
-	virtual void EndBroadcastSession() = 0;
-
-	virtual bool IsBroadcasting(int32* pnNumViewers) = 0;
-	virtual bool BIsUploadingThumbnails() = 0;
-	virtual BroadcastSessionID_t GetBroadcastSessionID() = 0;
-
-	virtual bool ReceiveBroadcastChat(CSteamID, BroadcastSessionID_t, bool) = 0;
-	virtual bool PostBroadcastChat(BroadcastSessionID_t, const char*) = 0;
-	virtual bool MuteBroadcastChatUser(BroadcastSessionID_t, CSteamID) = 0;
-
-	virtual bool InitBroadcastVideo(int32, int32, int32 iWidth, int32 iHeight, const uint8*, int32, const uint8*, int32) = 0;
-	virtual bool InitBroadcastAudio(int32, int32, int32, int32, int32, const uint8*, int32) = 0;
-
-	virtual bool UploadBroadcastFrame(bool, bool, uint32, int64, int64, const uint8* pubFrame, int32 iFrameSize) = 0;
-	virtual bool UploadBroadcastThumbnail(int32 iWidth, int32 iHeight, const uint8* pubRGBData, int32 iRGBDataSize) = 0;
-
-	virtual void DroppedVideoFrames(int32) = 0;
-
-	virtual void SetCurrentVideoEncodingRate(int32) = 0;
-	virtual void SetMicrophoneState(bool, bool) = 0;
-	virtual void SetVideoSource(bool) = 0;
-	virtual void BroadcastRecorderError(EBroadcastRecorderResult) = 0;
-
-	virtual void LoadBroadcastSettings() = 0;
-	virtual void SetBroadcastPermissions(EBroadcastPermission) = 0;
-	virtual EBroadcastPermission GetBroadcastPermissions() = 0;
-	virtual int32 GetBroadcastMaxKbps() = 0;
-	virtual int32 GetBroadcastDelaySeconds() = 0;
-	virtual bool BGetBroadcastDimensions(int32* iWidth, int32* iHeight) = 0;
-	virtual bool GetBroadcastIncludeDesktop() = 0;
-	virtual bool GetBroadcastRecordSystemAudio() = 0;
-	virtual bool GetBroadcastRecordMic() = 0;
-	virtual EBroadcastChatCorner GetBroadcastShowChatCorner() = 0;
-	virtual bool GetBroadcastShowDebugInfo() = 0;
-	virtual bool GetBroadcastShowReminderBanner() = 0;
-	virtual int32 GetBroadcastEncoderSetting() = 0;
-
-	virtual void InviteToBroadcast(CSteamID steamID, bool bUnk, uint32 uUnk) = 0;
-	virtual void IgnoreApprovalRequest(CSteamID, uint32 uUnk) = 0;
-	virtual void BroadcastFirstTimeComplete() = 0;
-	virtual void SetInHomeStreamState(bool) = 0;
-	virtual void WatchBroadcast(CSteamID) = 0;
-	virtual unknown_ret GetWatchBroadcastMPD(CSteamID) = 0;
-	virtual int32 GetApprovalRequestCount() = 0;
-	virtual int32 GetApprovalRequests(CSteamID*, uint32) = 0;
-	virtual void AddBroadcastGameData(const char*, const char*) = 0;
-	virtual void RemoveBroadcastGameData(const char*) = 0;
-	virtual void AddTimelineMarker(const char*, bool, uint8, uint8, uint8) = 0;
-	virtual void RemoveTimelineMarker() = 0;
-	virtual int32 AddRegion(const char*, const char*, void* /* SteamTVRegion_t const* */, int32 /* ESteamTVRegionBehavior */) = 0;
-	virtual void RemoveRegion(unsigned int) = 0;
-	virtual void GetVideoURL(AppId_t appId) = 0;
-	virtual void GetOPFSettings(AppId_t appId) = 0;
-	virtual bool GetOPFStringForApp(AppId_t appId, char* pchBuffer, int32 iUnk, int32* pnBufferSize) = 0;
-
-	virtual unknown_ret WebRTCGetTURNAddress(CUtlString*) = 0;
-	virtual unknown_ret WebRTCStartResult(uint64, bool, const char*) = 0;
-	virtual unknown_ret WebRTCAddCandidate(uint64, const char*, int, const char*) = 0;
-	virtual unknown_ret WebRTCGetAnswer(uint64, CUtlString*) = 0;
+    virtual void UnlockH264() = 0;
+    virtual int32 EGetBroadcastReady() = 0;
+    virtual void BeginBroadcastSession() = 0;
+    virtual void EndBroadcastSession() = 0;
+    virtual bool IsBroadcasting(int32* pnNumViewers) = 0;
+    virtual bool BIsUploadingThumbnails() = 0;
+    virtual BroadcastSessionID_t GetBroadcastSessionID() = 0;
+    virtual bool ReceiveBroadcastChat(CSteamID, BroadcastSessionID_t, bool) = 0;
+    virtual bool PostBroadcastChat(BroadcastSessionID_t, const char*) = 0;
+    virtual bool MuteBroadcastChatUser(BroadcastSessionID_t, CSteamID) = 0;
+    virtual bool InitBroadcastVideo(int32, int32, int32 iWidth, int32 iHeight, const uint8*, int32, const uint8*, int32) = 0;
+    virtual bool InitBroadcastAudio(int32, int32, int32, int32, int32, const uint8*, int32) = 0;
+    virtual bool UploadBroadcastFrame(bool, bool, uint32, int64, int64, const uint8* pubFrame, int32 iFrameSize) = 0;
+    virtual bool UploadBroadcastThumbnail(int32 iWidth, int32 iHeight, const uint8* pubRGBData, int32 iRGBDataSize) = 0;
+    virtual void DroppedVideoFrames(int32) = 0;
+    virtual void SetCurrentVideoEncodingRate(int32) = 0;
+    virtual void SetMicrophoneState(bool, bool) = 0;
+    virtual void SetVideoSource(bool) = 0;
+    virtual void BroadcastRecorderError(EBroadcastRecorderResult) = 0;
+    virtual void LoadBroadcastSettings() = 0;
+    virtual void SetBroadcastPermissions(EBroadcastPermission) = 0;
+    virtual EBroadcastPermission GetBroadcastPermissions() = 0;
+    virtual int32 GetBroadcastMaxKbps() = 0;
+    virtual int32 GetBroadcastDelaySeconds() = 0;
+    virtual bool BGetBroadcastDimensions(int32* iWidth, int32* iHeight) = 0;
+    virtual bool GetBroadcastIncludeDesktop() = 0;
+    virtual bool GetBroadcastRecordSystemAudio() = 0;
+    virtual bool GetBroadcastRecordMic() = 0;
+    virtual EBroadcastChatCorner GetBroadcastShowChatCorner() = 0;
+    virtual bool GetBroadcastShowDebugInfo() = 0;
+    virtual bool GetBroadcastShowReminderBanner() = 0;
+    virtual int32 GetBroadcastEncoderSetting() = 0;
+    virtual void InviteToBroadcast(CSteamID steamID, bool bUnk, uint32 uUnk) = 0;
+    virtual void IgnoreApprovalRequest(CSteamID, uint32 uUnk) = 0;
+    virtual void BroadcastFirstTimeComplete() = 0;
+    virtual void SetInHomeStreamState(bool) = 0;
+    virtual void WatchBroadcast(CSteamID) = 0;
+    virtual unknown_ret GetWatchBroadcastMPD(CSteamID) = 0;
+    virtual int32 GetApprovalRequestCount() = 0;
+    virtual int32 GetApprovalRequests(CSteamID*, uint32) = 0;
+    virtual void GetVideoURL(AppId_t appId) = 0;
+    virtual void GetOPFSettings(AppId_t appId) = 0;
+    virtual bool GetOPFStringForApp(AppId_t appId, char* pchBuffer, int32 iUnk, int32* pnBufferSize) = 0;
+    virtual unknown_ret WebRTCGetTURNAddress(CUtlString*) = 0;
+    virtual unknown_ret WebRTCStartResult(uint64, bool, const char*) = 0;
+    virtual unknown_ret WebRTCAddCandidate(uint64, const char*, int, const char*) = 0;
+    virtual unknown_ret WebRTCGetAnswer(uint64, CUtlString*) = 0;
 };
 
 #endif // ICLIENTVIDEO_H

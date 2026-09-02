@@ -23,56 +23,47 @@
 #include "Types/SteamTypes.h"
 #include "Types/ScreenshotsCommon.h"
 
-
 abstract_class UNSAFE_INTERFACE IClientScreenshots
 {
 public:
-	virtual const char *GetShortcutDisplayName( CGameID gameID ) = 0;
-	virtual void SetShortcutDisplayName( CGameID, const char *cszName ) = 0;
-
-	virtual ScreenshotHandle WriteScreenshot( CGameID gameID, const uint8 *pubRGBData, uint32 uRGBDataSize, int32 iWidth, int32 iHeight ) = 0;
-	virtual ScreenshotHandle AddScreenshotToLibrary( CGameID gameID, EVRScreenshotType eVRKind, const char *cszScreenshotPath, const char *cszThumbnailPath, const char *pchUnk,  int32 iWidth, int32 iHeight ) = 0;
-
-	virtual void TriggerScreenshot( CGameID gameID ) = 0;
-	virtual void RequestScreenshotFromGame( AppId_t nAppId ) = 0;
-
-	virtual bool SetLocation( CGameID gameID, ScreenshotHandle hScreenshot, const char *cszLocation ) = 0;
-	virtual bool TagUser( CGameID gameID, ScreenshotHandle hScreenshot, CSteamID userID ) = 0;
-	virtual bool TagPublishedFile( CGameID gameID, ScreenshotHandle hScreenshot, PublishedFileId_t unPublishedFileId ) = 0;
-	
-	virtual bool ResolvePath( CGameID gameID, ScreenshotHandle hScreenshot, bool bUnk, char *szResolvedPath, uint32 cubResolvedPath ) = 0;
-	virtual uint32 GetSizeOnDisk( CGameID gameID, ScreenshotHandle hScreenshot ) = 0;
-	virtual uint32 GetSizeInCloud( CGameID gameID, ScreenshotHandle hScreenshot ) = 0;
-	virtual bool IsPersisted( CGameID gameID, ScreenshotHandle hScreenshot ) = 0;
-
-	virtual int32 GetNumGamesWithLocalScreenshots() = 0;
-	STEAMWORKS_STRUCT_RETURN_1(CGameID, GetGameWithLocalScreenshots, int32, iGameIndex) /*virtual CGameID GetGameWithLocalScreenshots( int32 iGameIndex ) = 0;*/
-
-	virtual int32 GetLocalScreenshotCount( CGameID gameID ) = 0;
-	virtual bool GetLocalScreenshot( CGameID gameID, int32 iScreenshotIndex, ScreenshotHandle* phScreenshot, int32 *piWidth, int32 *piHeight, uint32 *puTimestamp, EUCMFilePrivacyState *pePrivacy, uint64* pullFileID, char *pchCaption, uint32 cubCaption, bool *pbSpoiler ) = 0;
-	virtual bool GetLocalScreenshotByHandle(CGameID gameID, ScreenshotHandle hScreenshot, int32 *piWidth, int32 *piHeight, uint32 *puTimestamp, EUCMFilePrivacyState *pePrivacy, uint64 *pullFileID, char *pchCaption, uint32 cubCaption, bool *pbSpoiler) = 0;
-	virtual bool SetLocalScreenshotCaption( CGameID gameID, ScreenshotHandle hScreenshot, const char *cszCaption ) = 0;
-	virtual bool SetLocalScreenshotPrivacy( CGameID gameID, ScreenshotHandle hScreenshot, EUCMFilePrivacyState ePrivacy ) = 0;
-	virtual bool SetLocalScreenshotSpoiler( CGameID, ScreenshotHandle hScreenshot, bool bSpoiler ) = 0;
-
-	virtual unknown_ret GetLocalLastScreenshot(CGameID*, uint32*) = 0;
-
-	virtual bool StartBatch( CGameID gameID ) = 0;
-	virtual bool AddToBatch( ScreenshotHandle hScreenshot ) = 0;
-	virtual SteamAPICall_t UploadBatch( EUCMFilePrivacyState ePrivacy ) = 0;
-	virtual SteamAPICall_t DeleteBatch( bool bDeleteFromCloud ) = 0;
-	virtual bool CancelBatch() = 0;
-
-	virtual void RecoverOldScreenshots() = 0;
-	virtual uint32 GetTaggedUserCount( CGameID gameID, ScreenshotHandle hScreenshot ) = 0;
-	STEAMWORKS_STRUCT_RETURN_3(CSteamID, GetTaggedUser, CGameID, gameID, ScreenshotHandle, hScreenshot, int32, iUserIndex) /*virtual CSteamID GetTaggedUser( CGameID gameID, ScreenshotHandle hScreenshot, int32 iUserIndex ) = 0;*/
-	virtual bool GetLocation( CGameID gameID, ScreenshotHandle hScreenshot, char *pchLocation, uint32 cubLocation ) = 0;
-	
-	virtual uint32 GetTaggedPublishedFileCount( CGameID gameID, ScreenshotHandle hScreenshot ) = 0;
-	virtual PublishedFileId_t GetTaggedPublishedFile( CGameID gameID, ScreenshotHandle hScreenshot, int32 iPublishedFileIndex ) = 0;
-
-	virtual unknown_ret GetScreenshotVRType(CGameID gameID, uint32 uUnk) = 0;
-	virtual bool BGetUserScreenshotDirectory(char* pchBuf, uint32 cubBuf) = 0;
+    virtual const char *GetShortcutDisplayName( CGameID gameID ) = 0;
+    virtual void SetShortcutDisplayName( CGameID, const char *cszName ) = 0;
+    virtual unknown_ret SendScreenshotStartedNotification() = 0; //TODO: REVERSE ME
+    virtual ScreenshotHandle WriteScreenshot( CGameID gameID, const uint8 *pubRGBData, uint32 uRGBDataSize, int32 iWidth, int32 iHeight ) = 0;
+    virtual ScreenshotHandle AddScreenshotToLibrary( CGameID gameID, EVRScreenshotType eVRKind, const char *cszScreenshotPath, const char *cszThumbnailPath, const char *pchUnk,  int32 iWidth, int32 iHeight ) = 0;
+    virtual void TriggerScreenshot( CGameID gameID ) = 0;
+    virtual void RequestScreenshotFromGame( AppId_t nAppId ) = 0;
+    virtual bool SetLocation( CGameID gameID, ScreenshotHandle hScreenshot, const char *cszLocation ) = 0;
+    virtual bool TagUser( CGameID gameID, ScreenshotHandle hScreenshot, CSteamID userID ) = 0;
+    virtual bool TagPublishedFile( CGameID gameID, ScreenshotHandle hScreenshot, PublishedFileId_t unPublishedFileId ) = 0;
+    virtual bool ResolvePath( CGameID gameID, ScreenshotHandle hScreenshot, bool bUnk, char *szResolvedPath, uint32 cubResolvedPath ) = 0;
+    virtual uint32 GetSizeOnDisk( CGameID gameID, ScreenshotHandle hScreenshot ) = 0;
+    virtual uint32 GetSizeInCloud( CGameID gameID, ScreenshotHandle hScreenshot ) = 0;
+    virtual bool IsPersisted( CGameID gameID, ScreenshotHandle hScreenshot ) = 0;
+    virtual int32 GetNumGamesWithLocalScreenshots() = 0;
+    STEAMWORKS_STRUCT_RETURN_1(CGameID, GetGameWithLocalScreenshots, int32, iGameIndex) /*virtual CGameID GetGameWithLocalScreenshots( int32 iGameIndex ) = 0;*/
+    virtual int32 GetLocalScreenshotCount( CGameID gameID ) = 0;
+    virtual bool GetLocalScreenshot( CGameID gameID, int32 iScreenshotIndex, ScreenshotHandle* phScreenshot, int32 *piWidth, int32 *piHeight, uint32 *puTimestamp, EUCMFilePrivacyState *pePrivacy, uint64* pullFileID, char *pchCaption, uint32 cubCaption, bool *pbSpoiler ) = 0;
+    virtual bool GetLocalScreenshotByHandle(CGameID gameID, ScreenshotHandle hScreenshot, int32 *piWidth, int32 *piHeight, uint32 *puTimestamp, EUCMFilePrivacyState *pePrivacy, uint64 *pullFileID, char *pchCaption, uint32 cubCaption, bool *pbSpoiler) = 0;
+    virtual bool SetLocalScreenshotCaption( CGameID gameID, ScreenshotHandle hScreenshot, const char *cszCaption ) = 0;
+    virtual bool SetLocalScreenshotPrivacy( CGameID gameID, ScreenshotHandle hScreenshot, EUCMFilePrivacyState ePrivacy ) = 0;
+    virtual bool SetLocalScreenshotSpoiler( CGameID, ScreenshotHandle hScreenshot, bool bSpoiler ) = 0;
+    virtual unknown_ret GetLocalLastScreenshot(CGameID*, uint32*) = 0;
+    virtual bool StartBatch( CGameID gameID ) = 0;
+    virtual bool AddToBatch( ScreenshotHandle hScreenshot ) = 0;
+    virtual SteamAPICall_t UploadBatch( EUCMFilePrivacyState ePrivacy ) = 0;
+    virtual SteamAPICall_t DeleteBatch( bool bDeleteFromCloud ) = 0;
+    virtual bool CancelBatch() = 0;
+    virtual void RecoverOldScreenshots() = 0;
+    virtual uint32 GetTaggedUserCount( CGameID gameID, ScreenshotHandle hScreenshot ) = 0;
+    STEAMWORKS_STRUCT_RETURN_3(CSteamID, GetTaggedUser, CGameID, gameID, ScreenshotHandle, hScreenshot, int32, iUserIndex) /*virtual CSteamID GetTaggedUser( CGameID gameID, ScreenshotHandle hScreenshot, int32 iUserIndex ) = 0;*/
+    virtual bool GetLocation( CGameID gameID, ScreenshotHandle hScreenshot, char *pchLocation, uint32 cubLocation ) = 0;
+    virtual uint32 GetTaggedPublishedFileCount( CGameID gameID, ScreenshotHandle hScreenshot ) = 0;
+    virtual PublishedFileId_t GetTaggedPublishedFile( CGameID gameID, ScreenshotHandle hScreenshot, int32 iPublishedFileIndex ) = 0;
+    virtual unknown_ret GetScreenshotVRType(CGameID gameID, uint32 uUnk) = 0;
+    virtual unknown_ret SetScreenshotTimelineData() = 0; //TODO: REVERSE ME
+    virtual unknown_ret BQueryScreenshotsByTimeline() = 0; //TODO: REVERSE ME
+    virtual bool BGetUserScreenshotDirectory(char* pchBuf, uint32 cubBuf) = 0;
 };
 
 #endif // ICLIENTSCREENSHOTS_H

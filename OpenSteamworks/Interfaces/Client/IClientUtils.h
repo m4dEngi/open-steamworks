@@ -30,45 +30,34 @@ public:
     virtual const char* GetUserBaseFolderInstallImage() = 0;
     virtual unknown_ret GetUserBaseFolderPersistentStorage() = 0;
     virtual const char* GetManagedContentRoot() = 0;
-
     // return the number of seconds since the user
     virtual uint32 GetSecondsSinceAppActive() = 0;
     virtual uint32 GetSecondsSinceComputerActive() = 0;
     virtual void SetComputerActive() = 0;
-
     // the universe this client is connecting to
     virtual EUniverse GetConnectedUniverse() = 0;
     virtual unknown_ret GetSteamRealm() = 0;
-
     // server time - in PST, number of seconds since January 1, 1970 (i.e unix time)
     virtual uint32 GetServerRealTime() = 0;
-
     // returns the 2 digit ISO 3166-1-alpha-2 format country code this client is running in (as looked up via an IP-to-location database)
     // e.g "US" or "UK".
     virtual const char* GetIPCountry() = 0;
-
     // returns true if the image exists, and valid sizes were filled out
     virtual bool GetImageSize( int32 iImage, uint32 *pnWidth, uint32 *pnHeight ) = 0;
-
     // returns true if the image exists, and the buffer was successfully filled out
     // results are returned in RGBA format
     // the destination buffer size should be 4 * height * width * sizeof(char)
     virtual bool GetImageRGBA( int32 iImage, uint8 *pubDest, int32 nDestBufferSize ) = 0;
-
     virtual uint32 GetNumRunningApps() = 0;
-
     // return the amount of battery power left in the current system in % [0..100], 255 for being on AC power
     virtual uint8 GetCurrentBatteryPower() = 0;
     virtual unknown_ret GetBatteryInformation(int32*, bool*) = 0;
-
-
     virtual void SetOfflineMode( bool bOffline ) = 0;
     virtual bool GetOfflineMode() = 0;
     virtual AppId_t SetAppIDForCurrentPipe( AppId_t nAppID, bool bTrackProcess ) = 0;
     virtual AppId_t GetAppID() = 0;
     virtual void SetAPIDebuggingActive( bool bActive, bool bVerbose ) = 0;
     virtual unknown_ret AllocPendingAPICallHandle() = 0;
-
     // API asynchronous call results
     // can be used directly, but more commonly used via the callback dispatch API (see steam_api.h)
     virtual bool IsAPICallCompleted( SteamAPICall_t hSteamAPICall, bool *pbFailed ) = 0;
@@ -80,7 +69,6 @@ public:
     virtual bool TerminateAllApps(bool bUnk) = 0;
     virtual CellID_t GetCellID() = 0;
     virtual bool BIsGlobalInstance() = 0;
-
     // Asynchronous call to check if file is signed, result is returned in CheckFileSignature_t
     virtual SteamAPICall_t CheckFileSignature( const char *szFileName ) = 0;
     virtual bool IsSteamClientBeta() = 0;
@@ -120,12 +108,10 @@ public:
     virtual void AllowSetForegroundThroughWebhelper(int32) = 0;
     virtual void SetOverlayBrowserInfo(int32, int32, int64, int32, int32, int32, int32, int32) = 0;
     virtual void ClearOverlayBrowserInfo(int32) = 0;
-
     // function expects buf to be the size of 36 * szStructs
     //
     // first value is Game Overlay PID for current game
     virtual bool GetOverlayBrowserInfo(char* buf, int32 szStructs, int32* success) = 0;
-
     virtual void SetOverlayNotificationPosition(int32, int32) = 0;
     virtual void SetOverlayNotificationInset(int32, int32, int32) = 0;
     virtual unknown_ret DispatchClientUINotification(EClientUINotificationType eUnk, const char* pcUnk, uint32 uUnk) = 0;
@@ -156,10 +142,11 @@ public:
     virtual bool DismissGamepadTextInput(int32) = 0;
     virtual void FloatingGamepadTextInputDismissed() = 0;
     virtual void SetGameLauncherMode(int32, bool) = 0;
+    virtual unknown_ret IsRunningOnSteamHardware() = 0; //TODO: REVERSE ME
+    virtual unknown_ret GetSteamHardwareDefaultConfig() = 0; //TODO: REVERSE ME
     virtual void ClearAllHTTPCaches() = 0;
     virtual unknown_ret GetFocusedGameID() = 0;
     virtual uint32 GetFocusedWindowPID() = 0;
-
     // int32 is probably a pointer to buffer or int passed by value
     virtual void SetWebUITransportWebhelperPID(int32) = 0;
     virtual void GetWebUITransportInfo(int32 iUnk) = 0;
@@ -168,12 +155,12 @@ public:
     virtual void DumpHTTPClients(int32 iUnk) = 0;
     virtual bool BGetMachineID(int32 iUnk) = 0;
     virtual void NotifyMissingInterface(int32 iUnk) = 0;
-
     virtual bool IsSteamInTournamentMode() = 0;
     virtual void DesktopLockedStateChanged(bool) = 0;
     virtual void ScheduleBootReserveJob() = 0;
     virtual unknown_ret GetGameFrameRateReportFrequency() = 0;
     virtual void ReportGameFrameRate(int32, int32, int32, int32) = 0;
+    virtual unknown_ret SetGameFrameRateReportingEnabled() = 0; //TODO: REVERSE ME
 };
 
 #endif // ICLIENTUTILS_H

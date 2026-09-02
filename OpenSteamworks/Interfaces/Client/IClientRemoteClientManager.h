@@ -19,7 +19,7 @@
 
 #include "Types/RemoteClientCommon.h"
 
-class IClientRemoteClientManager
+abstract_class UNSAFE_INTERFACE IClientRemoteClientManager
 {
 public:
     virtual unknown_ret SetUIReadyForStream(bool) = 0;
@@ -41,25 +41,35 @@ public:
     virtual unknown_ret GetClientPlatformTypes() = 0;
     virtual unknown_ret GetRemoteClientCount() = 0;
     virtual unknown_ret GetRemoteClientIDByIndex(uint32) = 0;
-    virtual unknown_ret GetRemoteClientNameByIndex(uint32) = 0;
+    virtual unknown_ret GetConnectedRemoteClientIDByIndex() = 0; //TODO: REVERSE ME
+    virtual unknown_ret BRemoteClientDownloadManagementEnabled() = 0; //TODO: REVERSE ME
+    virtual unknown_ret BHasConnectedClients() = 0; //TODO: REVERSE ME
+    virtual unknown_ret BRemoteClientIsConnected() = 0; //TODO: REVERSE ME
     virtual unknown_ret GetRemoteClientConnectStateByIndex(uint32) = 0;
+    virtual unknown_ret SendDownloadQueueChangeToRemoteClient() = 0; //TODO: REVERSE ME
+    virtual unknown_ret SendDownloadIndexChangeToRemoteClient() = 0; //TODO: REVERSE ME
+    virtual unknown_ret SendSuspendLanPeerContent() = 0; //TODO: REVERSE ME
+    virtual unknown_ret SendSuspendDownloadThrottleingToRemoteClient() = 0; //TODO: REVERSE ME
+    virtual unknown_ret SendEnableAllDownloadsToRemoteClient() = 0; //TODO: REVERSE ME
+    virtual unknown_ret SendRemoveFromDownloadsToRemoteClient() = 0; //TODO: REVERSE ME
     virtual bool BRemoteClientHasStreamingSupportedByIndex(uint32) = 0;
     virtual bool BRemoteClientHasStreamingEnabledByIndex(uint32) = 0;
     virtual unknown_ret GetRemoteClientAppStateByIndex(uint32, uint32) = 0;
+    virtual unknown_ret GetRemoteClientNameByIndex(uint32) = 0;
     virtual unknown_ret GetRemoteClientConnectedCount() = 0;
     virtual unknown_ret GetRemoteClientStreamingEnabledCount() = 0;
     virtual unknown_ret GetRemoteClientName(uint64) = 0;
     virtual bool BRemoteClientStreaming(uint64) = 0;
     virtual unknown_ret GetRemoteClientStreamingSession(uint64) = 0;
     virtual unknown_ret GetRemoteClientFormFactor(uint64) = 0;
-    virtual bool BRemoteClientCanSteamVR(uint64) = 0;
+    virtual unknown_ret BRemoteClientCanStreamSteamVR() = 0; //TODO: REVERSE ME
     virtual bool BAnyRemoteClientCanSteamVR() = 0;
     virtual unknown_ret GetRemoteClientConnectState(uint64) = 0;
     virtual bool BRemoteClientHasLocalConnection(uint64) = 0;
     virtual bool BRemoteClientHasStreamingSupported(uint64) = 0;
     virtual bool BRemoteClientHasStreamingEnabled(uint64) = 0;
     virtual unknown_ret GetRemoteClientAppState(uint64, uint32) = 0;
-    virtual bool BRemoteClientIsSteamDeck(uint64) = 0;
+    virtual unknown_ret BRemoteClientIsLowSpecHardware() = 0; //TODO: REVERSE ME
     virtual bool BRemoteClientConnectedToWifiAP(uint64) = 0;
     virtual unknown_ret GetConnectedWifiAPClientID() = 0;
     virtual unknown_ret GetActiveVRStreamingInvitationClientID() = 0;
@@ -69,6 +79,8 @@ public:
     virtual bool BRemoteClientWifiAPUnpaired(uint64) = 0;
     virtual unknown_ret PairViaWifiAP(uint64) = 0;
     virtual unknown_ret UnpairLocalWifiAP() = 0;
+    virtual unknown_ret GetWifiDongleProblemFlags() = 0; //TODO: REVERSE ME
+    virtual unknown_ret EnableWifiRadioSoftwareState() = 0; //TODO: REVERSE ME
     virtual unknown_ret GetRemoteDeviceCount() = 0;
     virtual unknown_ret GetRemoteDeviceIDByIndex(uint32) = 0;
     virtual unknown_ret GetRemoteDeviceNameByIndex(uint32) = 0;
@@ -96,6 +108,7 @@ public:
     virtual bool BIsStreamStartInProgress(uint64, uint32) = 0;
     virtual unknown_ret LaunchAppResultRequestLaunchOption(uint32, int32 const*, int32) = 0;
     virtual unknown_ret AcceptEULA(uint64, uint32, char const*, uint32) = 0;
+    virtual unknown_ret AcceptAllEULAs() = 0; //TODO: REVERSE ME
     virtual unknown_ret GetRemoteClientPlatformName(uint64, bool*) = 0;
     virtual bool BIsStreamClientRunning() = 0;
     virtual bool BIsStreamClientRunningConnectedToClient(CGameID, uint64) = 0;
@@ -109,6 +122,7 @@ public:
     virtual unknown_ret PostControllerConfig(uint64, const uint8*, uint32) = 0;
     virtual unknown_ret GetControllerConfig(uint64, uint8*, uint32) = 0;
     virtual unknown_ret SetRemoteDeviceAuthorized(bool, const char*) = 0;
+    virtual unknown_ret SetRemoteDeviceSpectateAllowed() = 0; //TODO: REVERSE ME
     virtual unknown_ret SetStreamingDriversInstalled(bool) = 0;
     virtual unknown_ret SetStreamingPIN(const char*) = 0;
     virtual unknown_ret GetStreamingPINSize(int32*) = 0;

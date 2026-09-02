@@ -31,7 +31,7 @@ class CValidator
 #endif
 ;
 
-abstract_class IClientHTMLSurface
+abstract_class UNSAFE_INTERFACE IClientHTMLSurface
 {
 public:
 	virtual void __virtualDestructorForCSteamHTMLSurface() = 0;

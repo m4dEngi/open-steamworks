@@ -26,13 +26,12 @@
 // Valid as of Steamclient beta 22nd March 2014 (1395164792)
 #define CLIENTPRODUCTBUILDER_INTERFACE_VERSION "CLIENTDEPOTBUILDER_INTERFACE_VERSION001"
 
-
-abstract_class IClientProductBuilder
+abstract_class UNSAFE_INTERFACE IClientProductBuilder
 {
 public:
-	virtual uint64 SignInstallScript( uint32, const char *, const char * ) = 0;
-	virtual uint64 DRMWrap( uint32, const char *, const char *, const char *, uint32 ) = 0;
-	virtual uint64 CEGWrap( uint32, const char *, const char *, const char * ) = 0;
+    virtual uint64 SignInstallScript( uint32, const char *, const char * ) = 0;
+    virtual uint64 DRMWrap( uint32, const char *, const char *, const char *, uint32 ) = 0;
+    virtual uint64 CEGWrap( uint32, const char *, const char *, const char * ) = 0;
 };
 
 #endif // ICLIENTPRODUCTBUILDER_H

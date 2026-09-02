@@ -27,18 +27,22 @@
 abstract_class UNSAFE_INTERFACE IClientStreamClient
 {
 public:
-	virtual void Launched( CGameID gameID ) = 0;
-	virtual void FocusGained( CGameID gameID, bool ) = 0;
-	virtual void FocusLost( CGameID gameID ) = 0;
-	virtual void Finished( CGameID gameID, EResult eResult ) = 0;
-	virtual bool BGetStreamingClientConfig(CUtlBuffer*) = 0;
-	virtual bool BSaveStreamingClientConfig(CUtlBuffer*) = 0;
-	virtual unknown_ret SetQualityOverride(int32) = 0;
-	virtual unknown_ret SetBitrateOverride(int32) = 0;
-	virtual const char * GetSystemInfo() = 0;
-	virtual void StartStreamingSession( CGameID gameID ) = 0;
-	virtual void ReportStreamingSessionEvent( CGameID gameID, const char * ) = 0;
-	virtual void FinishStreamingSession( CGameID gameID, const char *, const char * ) = 0;
+    virtual void Launched( CGameID gameID ) = 0;
+    virtual unknown_ret VROverlayCreated() = 0; //TODO: REVERSE ME
+    virtual void FocusGained( CGameID gameID, bool ) = 0;
+    virtual void FocusLost( CGameID gameID ) = 0;
+    virtual void Finished( CGameID gameID, EResult eResult ) = 0;
+    virtual bool BGetStreamingClientConfig(CUtlBuffer*) = 0;
+    virtual bool BSaveStreamingClientConfig(CUtlBuffer*) = 0;
+    virtual unknown_ret SetQualityOverride(int32) = 0;
+    virtual unknown_ret SetBitrateOverride(int32) = 0;
+    virtual unknown_ret ShowOnScreenKeyboard() = 0; //TODO: REVERSE ME
+    virtual unknown_ret BQueueControllerConfigMessageForLocal() = 0; //TODO: REVERSE ME
+    virtual unknown_ret BGetControllerConfigMessageForRemote() = 0; //TODO: REVERSE ME
+    virtual const char * GetSystemInfo() = 0;
+    virtual void StartStreamingSession( CGameID gameID ) = 0;
+    virtual void ReportStreamingSessionEvent( CGameID gameID, const char * ) = 0;
+    virtual void FinishStreamingSession( CGameID gameID, const char *, const char * ) = 0;
 };
 
 #endif // ICLIENTSTREAMCLIENT_H
