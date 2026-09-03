@@ -1,3 +1,6 @@
+# NEXUS MODS UNRELEASED COPYRIGHT (C) 2026
+NEXUS MODS CONFIDENTIAL, UNRELEASED COPYRIGHT (C) 2026
+
 # open-steamworks
 
 **This ugly fork is maintained by a guy who can barely code even in php, so keep that in mind**
